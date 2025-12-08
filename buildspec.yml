@@ -1,0 +1,35 @@
+version: 0.2
+
+env:
+  variables:
+    WEBSITE_BUCKET: "christmas-characters-site-rds"
+    LAMBDA_FUNCTION_NAME: "getChristmasCharacters"
+
+phases:
+  install:
+    commands:
+      - echo "Nothing special to install for now."
+  build:
+    commands:
+      - echo "No build step yet (using static files as-is)."
+      # If you later add a frontend build, do it here:
+      # - cd web && npm ci && npm run build && cd ..
+  post_build:
+    commands:
+      - echo "Zipping Lambda code..."
+      - cd lambda
+      - zip -r ../lambda.zip .
+      - cd ..
+
+      - echo "Deploying website to S3..."
+      - aws s3 sync web s3://$WEBSITE_BUCKET/ --delete
+
+      - echo "Updating Lambda function code..."
+      - aws lambda update-function-code \
+        --function-name $LAMBDA_FUNCTION_NAME \
+        --zip-file fileb://lambda.zip
+
+      - echo "Deployment complete."
+artifacts:
+  files:
+    - "**/*"

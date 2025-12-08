@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>12 Characters of Christmas</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header>
+      <h1>12 Characters of Christmas</h1>
+      <p>
+        Meet the legends, heroes, and helpers who bring the magic of Christmas
+        to life.
+      </p>
+    </header>
+
+    <main>
+      <div id="characterGrid" class="grid"></div>
+    </main>
+
+    <footer>
+      <p>Paradise Donut Company &copy; 2025</p>
+    </footer>
+
+    <!-- Data-fetching logic -->
+    <script src="app.js"></script>
+
+    <!-- ❄ Snowflake generator -->
+    <script>
+      // Create multiple snowflakes
+      for (let i = 0; i < 35; i++) {
+        const snow = document.createElement("div");
+        snow.className = "snowflake";
+        snow.innerHTML = "❄";
+        snow.style.left = Math.random() * 100 + "vw";
+        snow.style.fontSize = Math.random() * 12 + 10 + "px";
+        snow.style.animationDuration = Math.random() * 4 + 6 + "s";
+        snow.style.animationDelay = Math.random() * 5 + "s";
+        snow.style.opacity = 0.4 + Math.random() * 0.6;
+        document.body.appendChild(snow);
+      }
+    </script>
+  </body>
+</html>
