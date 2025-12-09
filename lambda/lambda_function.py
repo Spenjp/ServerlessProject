@@ -7,6 +7,8 @@ table = dynamodb.Table("ChristmasCharacters")
 def lambda_handler(event, context):
     route_key = event.get("routeKey") or f"{event.get('requestContext', {}).get('http', {}).get('method', 'GET')} {event.get('rawPath', '/')}"
 
+    # Test comment for the lambda
+    
     try:
         if route_key == "GET /characters":
             response = table.scan()
