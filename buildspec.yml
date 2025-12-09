@@ -25,10 +25,7 @@ phases:
       - aws s3 sync web s3://$WEBSITE_BUCKET/ --delete
 
       - echo "Updating Lambda function code..."
-      - aws lambda update-function-code \
-        --function-name $LAMBDA_FUNCTION_NAME \
-        --zip-file fileb://lambda.zip
-
+      - aws lambda update-function-code --function-name "$LAMBDA_FUNCTION_NAME" --zip-file fileb://lambda.zip
       - echo "Deployment complete."
 artifacts:
   files:
